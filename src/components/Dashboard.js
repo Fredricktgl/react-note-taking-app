@@ -6,14 +6,19 @@ class Dashboard extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      notes: [
-        {
-          title: "Once upon a time",
-          body: "In a Galaxy far far away"
-        }
-      ],
+      notes: [{}],
       currentNoteIndex: 0
     }
+  }
+
+  componentWillMount(){
+    fetch('http://localhost:3001/notes')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          notes:data
+        })
+      })
   }
 
   handleTitleChange(event){
@@ -67,6 +72,25 @@ class Dashboard extends React.Component {
       currentNoteIndex: index
     })
   }
+  
+  sync(){
+    fetch(
+      'http://localhost:3001/notes/sync',
+      {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ 'message': this.state.notes })
+      }
+    ).then((response) => response.json())
+     .then((data) => {
+        this.setState({
+          notes: data
+        })
+     })
+  }
 
   render() {
     return(
@@ -75,6 +99,7 @@ class Dashboard extends React.Component {
         <h1> My Note taking app </h1>
         <button onClick={()=>this.addNewNote()}>Add new note</button>
         <button onClick={()=>this.removeNote()}>Remove note</button>
+        <button onClick={()=>this.sync()}>Sync with Database</button>
       </div>
 
       <Note
