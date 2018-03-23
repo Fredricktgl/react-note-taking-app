@@ -10,8 +10,8 @@ class Sidebar extends React.Component{
       return array.map((note, index) => {
         return(
           <div onClick={() => this.props.changeCurrentIndex(index)} >
-            <h4>{note.title}</h4>
-            <p>{note.body}</p>
+            <h4><b>{note.title.substring(0,50)}</b></h4>
+            <p>{note.body.substring(0,100)}</p>
           </div>
         )
       })
@@ -21,6 +21,7 @@ class Sidebar extends React.Component{
   render() {
     return(
       <ul className="sidebar">
+      <h2 className="text-center"><b>Notes</b></h2>
         {this.renderNotes(this.props.notes)}
       </ul>
     )

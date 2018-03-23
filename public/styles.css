@@ -1,12 +1,22 @@
+body{
+  background-color: lavender;
+}
+
 .dashboard {
   display: grid;
-  grid-template-areas: ". title ."
-                       "sidebar note note";
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: "title title"
+                       "sidebar note"
+                       "sidebar footer";
+  grid-template-columns: 1fr 2fr;
 }
 
 .title{
   grid-area: title;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .note{
@@ -24,4 +34,13 @@
 
 .sidebar{
   grid-area: sidebar;
+  padding: 2em 4em 0 4em;
+}
+
+.footer{
+  grid-area: footer;
+}
+
+.controls{
+  margin-top: 1em;
 }

@@ -6,7 +6,7 @@ class Dashboard extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      notes: [{}],
+      notes: [],
       currentNoteIndex: 0
     }
   }
@@ -96,10 +96,7 @@ class Dashboard extends React.Component {
     return(
     <div className="dashboard">
       <div className="title">
-        <h1> My Note taking app </h1>
-        <button onClick={()=>this.addNewNote()}>Add new note</button>
-        <button onClick={()=>this.removeNote()}>Remove note</button>
-        <button onClick={()=>this.sync()}>Sync with Database</button>
+        <p className="display-4">My React Note-taking app</p>
       </div>
 
       <Note
@@ -111,6 +108,15 @@ class Dashboard extends React.Component {
       notes={this.state.notes} 
       changeCurrentIndex={(index)=>this.changeCurrentIndex(index)}/>
 
+      <div className="footer">
+        <table className="controls" width="80%">
+          <tr>
+            <td><button className="btn btn-outline-primary" onClick={()=>this.addNewNote()}>Add new note</button></td>
+            <td width="70%"><button className="btn btn-outline-danger" onClick={()=>this.removeNote()}>Remove note</button></td>
+            <td class="text-right"><button className="btn btn-outline-success" onClick={()=>this.sync()}>Database Sync</button></td>
+          </tr>
+        </table>
+      </div>
     </div>
     )
   }
