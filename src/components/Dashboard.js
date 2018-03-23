@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
   }
 
   componentWillMount(){
-    fetch('http://localhost:3001/notes')
+    fetch('https://rails-api-app-note.herokuapp.com/notes')
       .then((response) => response.json())
       .then((data) => {
         this.setState({
