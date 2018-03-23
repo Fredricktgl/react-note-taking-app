@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
   
   sync(){
     fetch(
-      'http://localhost:3001/notes/sync',
+      'https://rails-api-app-note.herokuapp.com/notes/sync',
       {
         method: 'post',
         headers: {
